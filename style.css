@@ -1,3 +1,33 @@
 body {
+  display: flex;
+  flex-direction: column-reverse;
   color: tomato;
+}
+
+canvas {
+  display: block;
+}
+
+.score {
+  text-align: right;
+  max-width: 400px;
+  margin-top: 10px;
+  font-size: 28px;
+
+}
+
+.button {
+  cursor: pointer;
+  padding: 7px 15px;
+  background-color: tomato;
+  border-radius: 4px;
+  color: white;
+  width: 80px;
+  text-align: center;
+  margin-top: 20px;
+  visibility: hidden;
+}
+
+.button:hover {
+  background-color: rosybrown;
 }
