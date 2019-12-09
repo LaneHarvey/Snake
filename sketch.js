@@ -6,7 +6,7 @@ let h;
 let speed = 5;
 
 function setup() {
-  createCanvas(200, 200);
+  createCanvas(500, 500);
   w = floor(width / rez);
   h = floor(height / rez);
   frameRate(5);
