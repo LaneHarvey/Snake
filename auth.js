@@ -39,7 +39,7 @@ signinButton.addEventListener('click', () => {
     const password = document.getElementById('password').value;
     const username = document.getElementById('username').value;
     let moveforward = false
-    let userEmail;
+    // let userEmail;
     let userPassword;
 
     db.collection("users").get().then((users) => {
@@ -50,33 +50,25 @@ signinButton.addEventListener('click', () => {
         let user = doc.data().username
         // doc.data() is never undefined for query doc snapshots
         if (user === username && userPassword === password) {
-            console.log(user, password)
+            console.log(user, userEmail, password)
             moveforward = true
-          }
-
-        })
-          
-          
-    }).then(data => {
-
-      if(moveforward) {
-        firebase.auth().signInWithEmailAndPassword(userEmail, password).catch((error) => {
-          console.error(error, password)
-      
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // ...
-        }).then(res => {
+            if(moveforward) {
+              firebase.auth().signInWithEmailAndPassword(userEmail, password).catch((error) => {
+                console.error(error, password)
             
-            let currentUser = firebase.auth().currentUser
-            console.log(currentUser, 'current user id')
-          })
-      
-      }
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+              }).then(res => {
+                  let currentUser = firebase.auth().currentUser
+                  console.log(currentUser.uid, 'current user id')
+                })
+            
+            }
+          }
+        })
     })
-    
-  
 })
 
 signOutButton.addEventListener('click', () => {
