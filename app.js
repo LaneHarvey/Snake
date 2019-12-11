@@ -2,24 +2,24 @@
 const button = document.querySelector(".button");
 const topScores = document.querySelector(".top-scores");
 
-// db.collection("users")
-//   .get()
-//   .then(data => {
-//     const allUserScores = [];
-//     data.docs.forEach(doc => {
-//       let score = doc.data();
-//       allUserScores.push(score);
-//       allUserScores.sort(function (a, b) {
-//         return b.highScore - a.highScore;
-//       });
-//     });
-//     document.querySelector(".top-scores").innerHTML = 
-//       `1 - ${allUserScores[0].username}: ${allUserScores[0].highScore}<br/> 
+db.collection("users")
+  .get()
+  .then(data => {
+    const allUserScores = [];
+    data.docs.forEach(doc => {
+      let score = doc.data();
+      allUserScores.push(score);
+      allUserScores.sort(function (a, b) {
+        return b.highscore - a.highscore;
+      });
+    });
+    document.querySelector(".top-scores").innerHTML = 
+      `1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}<br/> 
 
-//        2 - ${allUserScores[1].username}: ${allUserScores[1].highScore}<br/>
+       2 - ${allUserScores[1].username}: ${allUserScores[1].highscore}<br/>
        
-//        3 - ${allUserScores[2].username}: ${allUserScores[2].highScore}`;
-// });
+       3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}`;
+});
 
 button.addEventListener("click", () => {
   let name = document.querySelector(".user-name");
