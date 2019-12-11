@@ -1,11 +1,17 @@
 body {
+  width: 100%;
+  overflow-x: hidden;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column-reverse;
   color: tomato;
 }
 
 canvas {
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .score {
@@ -28,6 +34,28 @@ canvas {
   visibility: hidden;
 }
 
+.user-name {
+  padding: 2.5px;
+  visibility: hidden;
+}
+
 .button:hover {
   background-color: rosybrown;
+}
+
+.top-scores {
+  display: flex;
+  width: 400px;
+  color: black;
+  border: double;
+  margin-top: 5px;
+  padding: 5px;
+  align-items: center;
+  text-align: left;
+  justify-content: center;
+  -webkit-box-sizing: border-box;
+}
+
+.top-scores:hover {
+  cursor: pointer;
 }

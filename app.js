@@ -1,20 +1,25 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyB4rorD-XdTuKWIm8LAw-i-uOZ-16e_6Q0",
-  authDomain: "snake-53e2f.firebaseapp.com",
-  databaseURL: "https://snake-53e2f.firebaseio.com",
-  projectId: "snake-53e2f",
-  storageBucket: "snake-53e2f.appspot.com",
-  messagingSenderId: "955244718714",
-  appId: "1:955244718714:web:dac624354d97d44d49e9c3",
-  measurementId: "G-SBZVT0VX84"
-};
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
-const db = firebase.firestore();
 const button = document.querySelector(".button");
+const topScores = document.querySelector(".top-scores");
+
+// db.collection("users")
+//   .get()
+//   .then(data => {
+//     const allUserScores = [];
+//     data.docs.forEach(doc => {
+//       let score = doc.data();
+//       allUserScores.push(score);
+//       allUserScores.sort(function (a, b) {
+//         return b.highScore - a.highScore;
+//       });
+//     });
+//     document.querySelector(".top-scores").innerHTML = 
+//       `1 - ${allUserScores[0].username}: ${allUserScores[0].highScore}<br/> 
+
+//        2 - ${allUserScores[1].username}: ${allUserScores[1].highScore}<br/>
+       
+//        3 - ${allUserScores[2].username}: ${allUserScores[2].highScore}`;
+// });
 
 button.addEventListener("click", () => {
   let name = document.querySelector(".user-name");
@@ -39,21 +44,8 @@ button.addEventListener("click", () => {
           highScore: score
         });
       } else {
-        console.error(`the username ${name} alrady exists`);
+        console.error(`the username ${name} already exists`);
       }
     });
 });
 
-// ui.start('#firebaseui-auth-container', {
-//   signInOptions: [
-//     firebase.auth.EmailAuthProvider.PROVIDER_ID
-//   ],
-//   // Other config options...
-// });
-
-// db.collection("users").get().then(function(querySnapshot) {
-//   querySnapshot.forEach(function(doc) {
-//       // doc.data() is never undefined for query doc snapshots
-//       console.log(doc.id, " => ", doc.data());
-//   });
-// });

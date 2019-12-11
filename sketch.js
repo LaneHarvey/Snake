@@ -1,15 +1,15 @@
 let snake;
-let rez = 20;
+let rez = 15;
 let food;
 let w;
 let h;
 let speed = 5;
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(400, 400);
   w = floor(width / rez);
   h = floor(height / rez);
-  frameRate(5);
+  frameRate(speed);
 
   snake = new Snake();
   foodLocation();
@@ -21,12 +21,12 @@ function foodLocation() {
 
   do {
     collision = false;
-    x = floor(random() * w - 1) + 1;
-    y = floor(random() * h - 1) + 1;
+    x = floor(random() * w);
+    y = floor(random() * h);
     snake.body.forEach(bodyPiece => {
       if (x === bodyPiece.x && y === bodyPiece.y) {
         collision = true;
-        console.log("collision!!", x, y);
+        
       }
     });
   } while (collision);
@@ -34,8 +34,7 @@ function foodLocation() {
   console.log(snake.body);
 
   food = createVector(x, y);
-  console.log(food, "food");
-  console.log(snake.body[0], "snake");
+
 }
 
 function keyPressed() {
@@ -49,9 +48,9 @@ function keyPressed() {
     snake.setDir(0, -1, "up");
   }
   // Spacebar increases the snakes length
-  else if (key == " ") {
-    snake.grow();
-  }
+//   else if (key == " ") {
+//     snake.grow();
+//   }
 }
 
 function draw() {
@@ -66,20 +65,23 @@ function draw() {
   if (snake.endGame()) {
     print("endgame");
     noLoop();
-    let myButton = document.querySelector('.button').style.visibility = 'visible'
+    let myButton = (document.querySelector(".button").style.visibility = "visible");
+    let myName = (document.querySelector(".user-name").style.visibility = "visible");
     let name = document.querySelector(".user-name");
-    // if (!name) {
-    //   return;
-    // }
+    if (!name) {
+      return;
+    }
     name = name.value.toString();
+
+
 
     let score = document.querySelector(".score").innerHTML;
     console.log(score);
     // console.log(snake);
-    db.collection("users").add({
-        userName: name,
-        highScore: score
-    });
+    // db.collection("users").add({
+    //   userName: name,
+    //   highScore: score
+    // });
   }
 
   noStroke();
