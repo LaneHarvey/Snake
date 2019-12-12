@@ -7,28 +7,56 @@ const db = firebase.firestore();
 const signupButton = document.querySelector(".signup")
 const signinButton = document.querySelector(".signin")
 const signOutButton = document.querySelector('.signout')
+const userNames = [];
+
+const getHighScore = () => {
+ return db.collection("users")
+  .get()
+  .then(data => {
+    const allUserScores = [];
+    data.docs.forEach(doc => {
+      userNames.push(doc.data().username)
+      let score = doc.data();
+      allUserScores.push(score);
+      allUserScores.sort(function (a, b) {
+        return b.highscore - a.highscore;
+      });
+    });
+    document.querySelector(".top-scores").innerHTML = 
+      `1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}<br/> 
+
+       2 - ${allUserScores[1].username}: ${allUserScores[1].highscore}<br/>
+       
+       3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}`;
+  });
+}
+
+getHighScore()
+
+
+
 
 signupButton.addEventListener("click", () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const username = document.getElementById('username').value;
-    
 
+    if(userNames.includes(username)) {
+      console.error('User Already Exists!')
+      return;
+    }
+  
     if (!username) {
-      console.error('need to add a username')
       return
     }
+
     let something = firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
     // Handle Errors here.
-    console.log(email)
     var errorCode = error.code;
     var errorMessage = error.message;
     // ...
-    console.log(errorCode)
+    
     })
-
-    console.log(something)
-
     db.collection("users").doc(email).set({
       username: username,
       email: email,
@@ -82,10 +110,3 @@ signOutButton.addEventListener('click', () => {
         // An error happened.
       });
 })
-
-// db.collection("users").get().then(function(querySnapshot) {
-//   querySnapshot.forEach(function(doc) {
-//       // doc.data() is never undefined for query doc snapshots
-//       console.log(doc.id, " => ", doc.data());
-//   });
-// });

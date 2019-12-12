@@ -53,5 +53,6 @@ canvas {
   align-items: center;
   text-align: left;
   justify-content: center;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }

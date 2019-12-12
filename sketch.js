@@ -46,9 +46,9 @@ function keyPressed() {
     snake.setDir(0, -1, "up");
   }
   // Spacebar increases the snakes length
-  //   else if (key == " ") {
-  //     snake.grow();
-  //   }
+    else if (key == " ") {
+      snake.grow();
+    }
 }
 
 function draw() {
@@ -63,46 +63,41 @@ function draw() {
   if (snake.endGame()) {
     print("endgame");
     noLoop();
-    let myButton = (document.querySelector(".button").style.visibility =
-      "visible");
-    // let myName = (document.querySelector(".user-name").style.visibility = "visible");
-    // let name = document.querySelector(".user-name");
-    // if (!name) {
-    //   return;
-    // }
-    // name = name.value.toString();
 
     let score = document.querySelector(".score").innerHTML;
-
     var user = firebase.auth().currentUser;
 
     if (user) {
       // User is signed in.
-      console.log(user);
       let userEmail;
       let userID;
       let score = document.querySelector(".score").innerHTML;
       db.collection("users")
         .get()
         .then(data => {
-            const allUserEmails = [];
-            const allUserHighScores = [];
-            data.docs.forEach(doc => {
-              let userEmail = doc.data().email;
-              let userHighScore = doc.data().highscore;
-              if (userEmail === user.email) {
-                allUserEmails.push(userEmail).toString();
-                allUserHighScores.push(userHighScore);
-              }
-            });
-            if (!allUserEmails.includes(userEmail) && score > allUserHighScores) {
-              console.log(`previous score ${allUserHighScores}`)
-              db.collection("users").doc(allUserEmails.toString()).update({
-                highscore: score
-              });
-            } else {
-              console.error(`the email ${userEmail} already exists`);
+          const allUserEmails = [];
+          const allUserHighScores = [];
+          data.docs.forEach(doc => {
+            userEmail = doc.data().email;
+            let userHighScore = doc.data().highscore;
+            if (userEmail === user.email) {
+              allUserEmails.push(userEmail).toString();
+              allUserHighScores.push(userHighScore);
             }
+          });
+          if (!allUserEmails.includes(userEmail) && score > allUserHighScores) {
+            console.log(`previous score ${allUserHighScores}`);
+            db.collection("users")
+              .doc(allUserEmails.toString())
+              .update({
+                highscore: score
+              })
+              .then(res => {
+                getHighScore();
+              });
+          } else {
+            console.error(`So Close!!`);
+          }
         });
     } else {
       // No user is signed in.
