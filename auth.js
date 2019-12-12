@@ -18,19 +18,23 @@ signupButton.addEventListener("click", () => {
       console.error('need to add a username')
       return
     }
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
-        // Handle Errors here.
-        console.log(email)
-        db.collection("users").doc(email).set({
-          username: username,
-          email: email,
-          password: password,
-          highscore: 0
-        });
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
+    let something = firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    // Handle Errors here.
+    console.log(email)
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+    console.log(errorCode)
     })
+
+    console.log(something)
+
+    db.collection("users").doc(email).set({
+      username: username,
+      email: email,
+      password: password,
+      highscore: 0
+    });
 });
 
 //sign in function
