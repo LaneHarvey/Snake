@@ -6,7 +6,8 @@ let h;
 let speed = 5;
 
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(400, 400);
+  canvas.parent('sketch-holder');
   w = floor(width / rez);
   h = floor(height / rez);
   frameRate(speed);
@@ -30,7 +31,6 @@ function foodLocation() {
     });
   } while (collision);
 
-  console.log(snake.body);
 
   food = createVector(x, y);
 }
@@ -46,14 +46,14 @@ function keyPressed() {
     snake.setDir(0, -1, "up");
   }
   // Spacebar increases the snakes length
-    else if (key == " ") {
-      snake.grow();
-    }
+  // else if (key == " ") {
+  //   snake.grow();
+  // }
 }
 
 function draw() {
   scale(rez);
-  background(220);
+  background('fff');
   if (snake.eat(food)) {
     foodLocation();
   }
@@ -69,43 +69,32 @@ function draw() {
 
     if (user) {
       // User is signed in.
-      let userEmail;
       let userID;
-      let score = document.querySelector(".score").innerHTML;
+      // let score = document.querySelector(".score").innerHTML;
       db.collection("users")
         .get()
         .then(data => {
-          const allUserEmails = [];
-          const allUserHighScores = [];
+
           data.docs.forEach(doc => {
-            userEmail = doc.data().email;
-            let userHighScore = doc.data().highscore;
+            userEmail = doc.data().email
             if (userEmail === user.email) {
-              allUserEmails.push(userEmail).toString();
-              allUserHighScores.push(userHighScore);
-            }
+              if (score > doc.data().highscore) {
+                db.collection("users")
+                  .doc(userEmail)
+                  .update({
+                    highscore: score
+                  })
+                  .then(res => {
+                    getHighScore();
+                  });
+                }
+              }
           });
-          if (!allUserEmails.includes(userEmail) && score > allUserHighScores) {
-            console.log(`previous score ${allUserHighScores}`);
-            db.collection("users")
-              .doc(allUserEmails.toString())
-              .update({
-                highscore: score
-              })
-              .then(res => {
-                getHighScore();
-              });
-          } else {
-            console.error(`So Close!!`);
-          }
         });
     } else {
       // No user is signed in.
     }
 
-    // db.collection("users").set({
-    //   highScore: score
-    // });
   }
 
   noStroke();

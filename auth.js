@@ -1,13 +1,57 @@
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 const db = firebase.firestore();
 
 const signupButton = document.querySelector(".signup")
 const signinButton = document.querySelector(".signin")
 const signOutButton = document.querySelector('.signout')
+
+const mockSignupButton = document.querySelector(".mock_signup")
+const mockSigninButton = document.querySelector(".mock_signin")
+const userName = document.querySelector(".user")
+
 const userNames = [];
+const userEmails = [];
+
+const RemoveHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.remove('hidden'))
+const AddHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.add('hidden'))
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user.email)
+    db.collection("users").get().then(data => {
+      data.docs.forEach(doc => {
+        if (user.email === doc.data().email) {
+          document.querySelector(".user").innerHTML = doc.data().username
+          userEmails.push(doc.data().email)
+        }
+      })
+    })
+    document.querySelector('.mock_signup').classList.add('hidden')
+    document.querySelector('.mock_signin').classList.add('hidden')
+    document.querySelector('.signin').classList.add('hidden')
+  } else {
+    document.querySelector('.mock_signup').classList.remove('hidden')
+    document.querySelector('.signout').classList.add('hidden')
+    document.querySelector('.mock_signin').classList.remove('hidden')
+    document.querySelector('.user').innerHTML = ''
+
+
+  }
+});
+
+mockSignupButton.addEventListener('click', () => {
+  AddHidden(['mock_signup', 'mock_signin', 'signin'])
+  RemoveHidden(['input_username', 'input_email', 'input_password', 'signup'])
+})
+
+mockSigninButton.addEventListener('click', () => {
+  AddHidden(['mock_signup', 'mock_signin', 'signup'])
+  RemoveHidden(['input_username', 'input_password', 'signin'])
+})
 
 const getHighScore = () => {
  return db.collection("users")
@@ -16,6 +60,7 @@ const getHighScore = () => {
     const allUserScores = [];
     data.docs.forEach(doc => {
       userNames.push(doc.data().username)
+      // console.log(doc.data())
       let score = doc.data();
       allUserScores.push(score);
       allUserScores.sort(function (a, b) {
@@ -23,20 +68,18 @@ const getHighScore = () => {
       });
     });
     document.querySelector(".top-scores").innerHTML = 
-      `1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}<br/> 
+      `<p>1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}</p>
 
-       2 - ${allUserScores[1].username}: ${allUserScores[1].highscore}<br/>
+      <p>2 - ${allUserScores[1].username}: ${allUserScores[1].highscore}</p>
        
-       3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}`;
+      <p>3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}</p>`;
   });
 }
 
 getHighScore()
 
-
-
-
 signupButton.addEventListener("click", () => {
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const username = document.getElementById('username').value;
@@ -63,6 +106,9 @@ signupButton.addEventListener("click", () => {
       password: password,
       highscore: 0
     });
+
+    AddHidden(['input_username', 'input_email', 'input_password', 'signup'])
+    RemoveHidden(['signout'])
 });
 
 //sign in function

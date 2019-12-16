@@ -1,25 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Knewave&display=swap');
+
 body {
   width: 100%;
+  height: 100vh;
   overflow-x: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column-reverse;
-  color: tomato;
+  overflow-y: hidden;
+  background: linear-gradient(122.08deg, #E0A2A2 2.69%, #CFBADF 90.62%);
+  font-family: 'Knewave', cursive;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.flex-container .right-side {
+  width: 180px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.flex-container .left-side {
+  width: 180px;
+}
+
+.flex-container .middle {
+  text-align: right;
+}
+
+h1 {
+  text-align: center;
+  margin: auto;
+}
+
+h5 {
+  margin: auto;
+  margin-bottom: 5px;
+}
+.hidden {
+  display: none;
+}
+.middle {
+  margin: 0 10px;
+}
 canvas {
   display: block;
-  margin: 0;
   padding: 0;
 }
 
 .score {
   text-align: right;
-  max-width: 400px;
-  margin-top: 10px;
-  font-size: 28px;
-
 }
 
 .button {
@@ -34,6 +70,16 @@ canvas {
   visibility: hidden;
 }
 
+button {
+  max-width: 90px;
+  background: #FFFFFF;
+  font-family: 'Knewave', cursive;
+  border: 1px solid #FFEBEB;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
 .user-name {
   padding: 2.5px;
   visibility: hidden;
@@ -41,18 +87,4 @@ canvas {
 
 .button:hover {
   background-color: rosybrown;
-}
-
-.top-scores {
-  display: flex;
-  width: 400px;
-  color: black;
-  border: double;
-  margin-top: 5px;
-  padding: 5px;
-  align-items: center;
-  text-align: left;
-  justify-content: center;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
 }

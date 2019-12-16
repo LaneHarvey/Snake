@@ -19,18 +19,30 @@
     <title>Snake</title>
   </head>
   <body>
-    <div>
-      <input type="text" placeholder="username" id="username">
-      <input placeholder="email" id="email" type="email">
-      <input placeholder="password" id="password" type="password">
-      <button class="signup">Sign Up</button>
-      <button class="signin">Sign In</button>
-      <button class="signout">Sign Out</button>
-      <button class="button"></button>
-      <div class="top-scores">
 
+    
+    <h1>Snake</h1>
+    <div class="flex-container">
+      <div class="left-side"> 
+          <h4>Top Scores</h4>
+         <div class="top-scores"></div>
       </div>
-      <div class="score"></div>
+      <div class="middle">
+        <h5> <span class="user"></span>: score <span class="score">0</span></h5>
+        <div id="sketch-holder"></div>
+      </div>
+      <div class="right-side">
+
+          <input class="hidden input_username" type="text" placeholder="username" id="username">
+          <input class="hidden input_email" placeholder="email" id="email" type="email">
+          <input class="hidden input_password" placeholder="password" id="password" type="password">
+          <button class="hidden mock_signup">Sign Up</button>
+          <button class="hidden mock_signin">Log In</button>
+          <button class="signup hidden">Sign Up</button>
+          <button class="signin hidden">Log In</button>
+          <button class="signout">Sign Out</button>
+          <button class="" onClick="(()=>location.reload())()">Reset</button>
+      </div>
     </div>
 
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
