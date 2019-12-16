@@ -4,6 +4,13 @@ let food;
 let w;
 let h;
 let speed = 5;
+let eatSound
+
+function preload() {
+  soundFormats('mp3', 'ogg');
+  eatSound = loadSound('zelda.mp3');
+  deathSound = loadSound('megaman-3.mp3')
+}
 
 function setup() {
   let canvas = createCanvas(400, 400);
@@ -31,7 +38,6 @@ function foodLocation() {
     });
   } while (collision);
 
-
   food = createVector(x, y);
 }
 
@@ -56,12 +62,14 @@ function draw() {
   background('fff');
   if (snake.eat(food)) {
     foodLocation();
+    eatSound.play();
   }
   snake.update();
   snake.show();
 
   if (snake.endGame()) {
     print("endgame");
+    deathSound.play();
     noLoop();
 
     let score = document.querySelector(".score").innerHTML;

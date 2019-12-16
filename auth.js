@@ -40,8 +40,6 @@ firebase.auth().onAuthStateChanged((user) => {
     document.querySelector('.signout').classList.add('hidden')
     document.querySelector('.mock_signin').classList.remove('hidden')
     document.querySelector('.user').innerHTML = ''
-
-
   }
 });
 
