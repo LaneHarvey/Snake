@@ -8,8 +8,9 @@ let eatSound
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  eatSound = loadSound('zelda.mp3');
-  deathSound = loadSound('megaman-3.mp3')
+  eatSound = loadSound('/sounds/zelda.mp3');
+  deathSound = loadSound('/sounds/megaman-3.mp3')
+  gameMusic = loadSound('/sounds/Boss.mp3')
 }
 
 function setup() {
@@ -21,6 +22,7 @@ function setup() {
 
   snake = new Snake();
   foodLocation();
+  gameMusic.loop();
 }
 
 function foodLocation() {
@@ -70,6 +72,7 @@ function draw() {
   if (snake.endGame()) {
     print("endgame");
     deathSound.play();
+    gameMusic.stop();
     noLoop();
 
     let score = document.querySelector(".score").innerHTML;
