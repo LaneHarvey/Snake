@@ -8,7 +8,7 @@ let eatSound
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  eatSound = loadSound('/sounds/zelda.mp3');
+  eatSound = loadSound('/sounds/Jutsu.mp3');
   deathSound = loadSound('/sounds/megaman-3.mp3')
   gameMusic = loadSound('/sounds/Boss.mp3')
 }
@@ -64,6 +64,7 @@ function draw() {
   background('fff');
   if (snake.eat(food)) {
     foodLocation();
+    eatSound.stop();
     eatSound.play();
   }
   snake.update();
@@ -71,8 +72,6 @@ function draw() {
 
   if (snake.endGame()) {
     print("endgame");
-    deathSound.play();
-    gameMusic.stop();
     noLoop();
 
     let score = document.querySelector(".score").innerHTML;
@@ -89,7 +88,7 @@ function draw() {
           data.docs.forEach(doc => {
             userEmail = doc.data().email
             if (userEmail === user.email) {
-              if (score > doc.data().highscore) {
+              if (parseInt(score) > parseInt(doc.data().highscore)) {
                 db.collection("users")
                   .doc(userEmail)
                   .update({
@@ -105,6 +104,9 @@ function draw() {
     } else {
       // No user is signed in.
     }
+    eatSound.stop();
+    gameMusic.stop();
+    deathSound.play();
   }
   noStroke();
   fill(255, 0, 0);
