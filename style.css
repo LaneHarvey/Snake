@@ -5,10 +5,22 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
-  background: linear-gradient(122.08deg, #E0A2A2 2.69%, #CFBADF 90.62%);
+  /* background: linear-gradient(122.08deg, #E0A2A2 2.69%, #CFBADF 90.62%); */
+  background: linear-gradient(to top, #3a6073, #3a7bd5);
+  
   font-family: 'Knewave', cursive;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+h1 {
+  text-align: center;
+  margin: auto;
+}
+
+h5 {
+  margin: auto;
+  margin-bottom: 5px;
 }
 
 .flex-container {
@@ -34,21 +46,14 @@ body {
   text-align: right;
 }
 
-h1 {
-  text-align: center;
-  margin: auto;
-}
-
-h5 {
-  margin: auto;
-  margin-bottom: 5px;
-}
 .hidden {
   display: none;
 }
+
 .middle {
   margin: 0 10px;
 }
+
 canvas {
   display: block;
   padding: 0;
@@ -56,18 +61,6 @@ canvas {
 
 .score {
   text-align: right;
-}
-
-.button {
-  cursor: pointer;
-  padding: 7px 15px;
-  background-color: tomato;
-  border-radius: 4px;
-  color: white;
-  width: 80px;
-  text-align: center;
-  margin-top: 20px;
-  visibility: hidden;
 }
 
 button {
@@ -80,11 +73,12 @@ button {
   margin-top: 5px;
 }
 
-.user-name {
-  padding: 2.5px;
-  visibility: hidden;
-}
-
-.button:hover {
-  background-color: rosybrown;
+input {
+  max-width: 140px;
+  background: #FFFFFF;
+  font-family: cursive;
+  border: 1px solid #FFEBEB;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-top: 5px;
 }

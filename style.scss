@@ -1,0 +1,20 @@
+.trigger {
+    input[type="checkbox"] {
+
+        // Hide content via default
+        &+span {
+            visibility: hidden;
+            opacity: 0;
+
+            transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+        }
+
+        // Show if checkbox is clicked
+        &:checked+span {
+            visibility: visible;
+            opacity: 1;
+
+            transition-delay: 0s;
+        }
+    }
+}

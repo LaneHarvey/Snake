@@ -33,6 +33,8 @@ firebase.auth().onAuthStateChanged((user) => {
     document.querySelector('.mock_signup').classList.add('hidden')
     document.querySelector('.mock_signin').classList.add('hidden')
     document.querySelector('.signin').classList.add('hidden')
+    AddHidden(['input_username', 'input_email', 'input_password', 'signup'])
+    RemoveHidden(['signout'])
   } else {
     document.querySelector('.mock_signup').classList.remove('hidden')
     document.querySelector('.signout').classList.add('hidden')
@@ -68,11 +70,15 @@ const getHighScore = () => {
       });
     });
     document.querySelector(".top-scores").innerHTML = 
-      `<p>1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}</p>
+     `<p>1 - ${allUserScores[0].username}: ${allUserScores[0].highscore}</p>
 
       <p>2 - ${allUserScores[1].username}: ${allUserScores[1].highscore}</p>
        
-      <p>3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}</p>`;
+      <p>3 - ${allUserScores[2].username}: ${allUserScores[2].highscore}</p>
+      
+      <p>4 - ${allUserScores[3].username}: ${allUserScores[3].highscore}</p>
+      
+      <p>5 - ${allUserScores[4].username}: ${allUserScores[4].highscore}</p>`;
   });
 }
 
@@ -126,7 +132,7 @@ signinButton.addEventListener('click', () => {
         let userEmail = doc.data().email
         let userPassword = doc.data().password
         let user = doc.data().username
-        // doc.data() is never undefined for query doc snapshots
+        
         if (user === username && userPassword === password) {
             console.log(user, userEmail, password)
             moveforward = true
