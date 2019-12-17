@@ -59,10 +59,6 @@ mockSigninButton.addEventListener('click', () => {
   RemoveHidden(['input_username', 'input_password', 'signin'])
 })
 
-soundButton.addEventListener('click', () => {
-
-})
-
 const getHighScore = () => {
  return db.collection("users")
   .get()

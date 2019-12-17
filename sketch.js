@@ -14,6 +14,7 @@ function preload() {
 }
 
 function soundToggle() {
+  getAudioContext().resume();
   if (gameMusic.isPlaying()) {
     gameMusic.stop();
   } else {
@@ -32,6 +33,7 @@ function refresh() {
 }
 
 function setup() {
+  getAudioContext().resume();
   let canvas = createCanvas(400, 400);
   canvas.parent('sketch-holder');
   w = floor(width / rez);

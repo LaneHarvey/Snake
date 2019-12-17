@@ -30,6 +30,11 @@ h5 {
   flex-direction: column;
 }
 
+.top-section img {
+  height: 50px;
+  width: 50px;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -94,4 +99,37 @@ img {
   margin: auto;
   width: "50px";
   height: "50px";
+}
+
+@media only screen and (max-width: 375px) {
+  html, body {
+    overflow: hidden;
+    position: relative;
+  }
+  body {
+    max-width: 375px;
+    background-repeat: repeat
+  }
+  canvas {
+    max-width: 250px;
+    max-height: 250px;
+  }
+  button {
+    width: 37px;
+    font-size: 5px;
+  }
+  .top-section img {
+    height: 20px;
+    width: 20px;
+  }
+  .top-section h1 {
+    font-size: 12px;
+  }
+  .middle h5 {
+    font-size: 12px;
+    text-align: center;
+  }
+  .flex-container .left-side {
+    font-size: 7px;
+  }
 }
