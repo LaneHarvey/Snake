@@ -8,6 +8,7 @@ let speed = 5;
 function preload() {
   soundFormats('mp3', 'ogg');
   eatSound = loadSound('/sounds/jutsu.mp3');
+  eatFiveSound = loadSound('/sounds/rasengan.mp3')
   deathSound = loadSound('/sounds/megaman-3.mp3')
   gameMusic = loadSound('/sounds/boss.mp3')
 }
@@ -75,7 +76,6 @@ function keyPressed() {
   //   snake.grow();
   // }
 }
-
 function draw() {
   scale(rez);
   background('fff');
@@ -84,6 +84,13 @@ function draw() {
     foodLocation();
     eatSound.stop();
     eatSound.play();
+    let score = document.querySelector('.score').innerHTML
+
+    if (score % 5 === 0) {
+      eatSound.stop();
+      eatFiveSound.setVolume(2)
+      eatFiveSound.play();
+    }
   }
   snake.update();
   snake.show();
