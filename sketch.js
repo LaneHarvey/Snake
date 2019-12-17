@@ -4,13 +4,30 @@ let food;
 let w;
 let h;
 let speed = 5;
-let eatSound
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  eatSound = loadSound('/sounds/Jutsu.mp3');
+  eatSound = loadSound('/sounds/jutsu.mp3');
   deathSound = loadSound('/sounds/megaman-3.mp3')
-  gameMusic = loadSound('/sounds/Boss.mp3')
+  gameMusic = loadSound('/sounds/boss.mp3')
+}
+
+function soundToggle() {
+  if (gameMusic.isPlaying()) {
+    gameMusic.stop();
+  } else {
+    gameMusic.loop()
+  }
+}
+
+function refresh() {
+  speed = 5;
+  document.querySelector(".score").innerHTML = 0;
+
+  setup();
+  foodLocation();
+  redraw();
+  loop();
 }
 
 function setup() {
@@ -62,6 +79,7 @@ function keyPressed() {
 function draw() {
   scale(rez);
   background('fff');
+  
   if (snake.eat(food)) {
     foodLocation();
     eatSound.stop();

@@ -19,8 +19,10 @@
     <title>Snake</title>
   </head>
   <body>
-    <img src="snake-01.png" width="50px" height="50px">
-    <h1>Snake</h1>
+    <div class="top-section">
+      <img src="snake-01.png" width="50px" height="50px">
+      <h1>Snake</h1>
+    </div>
     <div class="flex-container">
       <div class="left-side"> 
           <h4>Top Scores</h4>
@@ -40,7 +42,8 @@
           <button class="signup hidden">Sign Up</button>
           <button class="signin hidden">Log In</button>
           <button class="signout">Sign Out</button>
-          <button class="" onClick="(()=>location.reload())()">Reset</button>
+          <button class="" onClick="refresh()">Reset</button>
+          <button class="sound-toggle" onClick="soundToggle()">Sound Toggle</button>
       </div>
     </div>
 

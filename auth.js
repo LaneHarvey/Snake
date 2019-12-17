@@ -11,13 +11,11 @@ const signOutButton = document.querySelector('.signout')
 
 const mockSignupButton = document.querySelector(".mock_signup")
 const mockSigninButton = document.querySelector(".mock_signin")
+const soundButton = document.querySelector(".sound-toggle")
 const userName = document.querySelector(".user")
 
 const userNames = [];
 const userEmails = [];
-
-const RemoveHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.remove('hidden'))
-const AddHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.add('hidden'))
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -43,6 +41,9 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
+const RemoveHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.remove('hidden'))
+const AddHidden = el => el.forEach(item => document.querySelector(`.${item}`).classList.add('hidden'))
+
 mockSignupButton.addEventListener('click', () => {
   AddHidden(['mock_signup', 'mock_signin', 'signin'])
   RemoveHidden(['input_username', 'input_email', 'input_password', 'signup'])
@@ -51,6 +52,15 @@ mockSignupButton.addEventListener('click', () => {
 mockSigninButton.addEventListener('click', () => {
   AddHidden(['mock_signup', 'mock_signin', 'signup'])
   RemoveHidden(['input_username', 'input_password', 'signin'])
+})
+
+mockSigninButton.addEventListener('click', () => {
+  AddHidden(['mock_signup', 'mock_signin', 'signup'])
+  RemoveHidden(['input_username', 'input_password', 'signin'])
+})
+
+soundButton.addEventListener('click', () => {
+
 })
 
 const getHighScore = () => {

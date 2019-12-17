@@ -23,19 +23,18 @@ h5 {
   margin-bottom: 5px;
 }
 
+.top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
   max-width: 1200px;
   margin: auto;
-}
-
-.flex-container .right-side {
-  width: 180px;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  
 }
 
 .flex-container .left-side {
@@ -44,6 +43,13 @@ h5 {
 
 .flex-container .middle {
   text-align: right;
+}
+
+.flex-container .right-side {
+  width: 180px;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {
