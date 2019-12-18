@@ -69,6 +69,7 @@ function foodLocation() {
   food = createVector(x, y);
 }
 
+function dPadController() { 
   moveLeft.addEventListener('click', () => {
     snake.setDir(-1,0, "left")
   })
@@ -81,6 +82,7 @@ function foodLocation() {
   moveUp.addEventListener('click', () => {
     snake.setDir(0, -1, "up");
   })
+}
 
 
 function keyPressed() {

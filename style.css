@@ -101,6 +101,10 @@ img {
   height: "50px";
 }
 
+.direction-section {
+  display: none
+}
+
 @media only screen and (max-width: 375px) {
   html, body {
     overflow: hidden;
@@ -131,6 +135,10 @@ img {
   }
   .flex-container .left-side {
     font-size: 7px;
+  }
+  .direction-section {
+    display: flex;
+    margin-top: 50px;
   }
   .d-pad {
     width: 50%;
