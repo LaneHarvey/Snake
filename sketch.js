@@ -5,6 +5,12 @@ let w;
 let h;
 let speed = 5;
 
+const moveUp = document.querySelector(".move-up")
+const moveRight = document.querySelector(".move-right")
+const moveDown = document.querySelector(".move-down")
+const moveLeft = document.querySelector(".move-left")
+
+
 function preload() {
   soundFormats('mp3', 'ogg');
   eatSound = loadSound('/sounds/jutsu.mp3');
@@ -62,6 +68,20 @@ function foodLocation() {
 
   food = createVector(x, y);
 }
+
+  moveLeft.addEventListener('click', () => {
+    snake.setDir(-1,0, "left")
+  })
+  moveRight.addEventListener('click', () => {
+    snake.setDir(1, 0, "right");
+  })
+  moveDown.addEventListener('click', () => {
+    snake.setDir(0, 1, "down");
+  })
+  moveUp.addEventListener('click', () => {
+    snake.setDir(0, -1, "up");
+  })
+
 
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {

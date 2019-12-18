@@ -19,32 +19,43 @@
     <title>Snake</title>
   </head>
   <body>
-    <div class="top-section">
-      <img class ="snake-image" src="snake-01.png">
-      <h1>Snake</h1>
-    </div>
-    <div class="flex-container">
-      <div class="left-side"> 
-          <h4>Top Scores</h4>
-         <div class="top-scores"></div>
+    <div class="main-section">
+      <div class="top-section">
+        <img class ="snake-image" src="snake-01.png">
+        <h1>Snake</h1>
       </div>
-      <div class="middle">
-        <h5> <span class="user"></span>: score <span class="score">0</span></h5>
-        <div id="sketch-holder"></div>
-      </div>
-      <div class="right-side">
+      <div class="flex-container">
+        <div class="left-side"> 
+            <h4>Top Scores</h4>
+          <div class="top-scores"></div>
+        </div>
+        <div class="middle">
+          <h5> <span class="user"></span>: score <span class="score">0</span></h5>
+          <div id="sketch-holder"></div>
+        </div>
+        <div class="right-side">
 
-          <input class="hidden input_username" type="text" placeholder="username" id="username">
-          <input class="hidden input_email" placeholder="email" id="email" type="email">
-          <input class="hidden input_password" placeholder="password" id="password" type="password">
-          <button class="hidden mock_signup">Sign Up</button>
-          <button class="hidden mock_signin">Log In</button>
-          <button class="signup hidden">Sign Up</button>
-          <button class="signin hidden">Log In</button>
-          <button class="signout">Sign Out</button>
-          <button class="reset" onClick="refresh()">Reset</button>
-          <button class="sound-toggle" onClick="soundToggle()">Sound Toggle</button>
+            <input class="hidden input_username" type="text" placeholder="username" id="username">
+            <input class="hidden input_email" placeholder="email" id="email" type="email">
+            <input class="hidden input_password" placeholder="password" id="password" type="password">
+            <button class="hidden mock_signup">Sign Up</button>
+            <button class="hidden mock_signin">Log In</button>
+            <button class="signup hidden">Sign Up</button>
+            <button class="signin hidden">Log In</button>
+            <button class="signout">Sign Out</button>
+            <button class="reset" onClick="refresh()">Reset</button>
+            <button class="sound-toggle" onClick="soundToggle()">Sound Toggle</button>
+        </div>
       </div>
+    </div>
+    <div class="direction-section">
+      <img class="d-pad" src="./dpad.png" usemap="#dpadmap">
+      <map name="dpadmap">
+        <area class="move-up" shape="rect" coords="60, 0, 120, 60" onTouchStart="moveUp"> <!-- top -->
+        <area class="move-right" shape="rect" coords="120, 60, 180, 120" onTouchStart="moveRight"> <!-- right -->
+        <area class="move-down" shape="rect" coords="60, 120, 120, 180" onTouchStart="moveDown"> <!-- down -->
+        <area class="move-left" shape="rect" coords="0, 60, 60, 120" onTouchStart="moveLeft"> <!-- left -->
+      </map>
     </div>
 
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>

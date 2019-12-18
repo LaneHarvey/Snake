@@ -132,4 +132,8 @@ img {
   .flex-container .left-side {
     font-size: 7px;
   }
+  .d-pad {
+    width: 50%;
+    height: 50%;
+  }
 }
