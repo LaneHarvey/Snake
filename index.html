@@ -44,17 +44,17 @@
             <button class="signin hidden">Log In</button>
             <button class="signout">Sign Out</button>
             <button class="reset" onClick="refresh()">Reset</button>
-            <button class="sound-toggle" onClick="soundToggle()">Sound Toggle</button>
+            <button class="sound-toggle" onClick="soundToggle()">Music Toggle</button>
         </div>
       </div>
     </div>
     <div class="direction-section">
       <img class="d-pad" src="./dpad.png" usemap="#dpadmap">
       <map name="dpadmap">
-        <area class="move-up" shape="rect" coords="60, 0, 120, 60" onTouchStart="dPadController()"> <!-- top -->
-        <area class="move-right" shape="rect" coords="120, 60, 180, 120" onTouchStart="dPadController()"> <!-- right -->
-        <area class="move-down" shape="rect" coords="60, 120, 120, 180" onTouchStart="dPadController()"> <!-- down -->
-        <area class="move-left" shape="rect" coords="0, 60, 60, 120" onTouchStart="dPadController()"> <!-- left -->
+        <area class="move-up" shape="rect" coords="75, 0, 150, 75" onTouchStart="dPadController()"> <!-- top -->
+        <area class="move-right" shape="rect" coords="150, 75, 225, 150" onTouchStart="moveRight"> <!-- right -->
+        <area class="move-down" shape="rect" coords="75, 150, 150, 225" onTouchStart="moveDown"> <!-- down -->
+        <area class="move-left" shape="rect" coords="0, 75, 75, 150" onTouchStart="moveLeft"> <!-- left -->
       </map>
     </div>
 

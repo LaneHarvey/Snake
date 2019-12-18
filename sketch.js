@@ -4,6 +4,7 @@ let food;
 let w;
 let h;
 let speed = 5;
+let gameMusic;
 
 const moveUp = document.querySelector(".move-up")
 const moveRight = document.querySelector(".move-right")
@@ -12,6 +13,8 @@ const moveLeft = document.querySelector(".move-left")
 
 
 function preload() {
+  console.log(getAudioContext().state);
+
   soundFormats('mp3', 'ogg');
   eatSound = loadSound('/sounds/jutsu.mp3');
   eatFiveSound = loadSound('/sounds/rasengan.mp3')
@@ -19,12 +22,22 @@ function preload() {
   gameMusic = loadSound('/sounds/boss.mp3')
 }
 
-function soundToggle() {
-  getAudioContext().resume();
-  if (gameMusic.isPlaying()) {
-    gameMusic.stop();
-  } else {
-    gameMusic.loop()
+// soundToggle();
+
+
+function setup() {
+
+  getAudioContext().state = "running";
+  let canvas = createCanvas(400, 400);
+  canvas.parent('sketch-holder');
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(speed);
+
+  snake = new Snake();
+  foodLocation();
+  if (getAudioContext().state === "running") {
+    gameMusic.loop();
   }
 }
 
@@ -36,19 +49,17 @@ function refresh() {
   foodLocation();
   redraw();
   loop();
+  // gameMusic.loop();
 }
 
-function setup() {
-  getAudioContext().resume();
-  let canvas = createCanvas(400, 400);
-  canvas.parent('sketch-holder');
-  w = floor(width / rez);
-  h = floor(height / rez);
-  frameRate(speed);
 
-  snake = new Snake();
-  foodLocation();
-  gameMusic.loop();
+function soundToggle() {
+  // getAudioContext()
+  if (gameMusic.isPlaying()) {
+    gameMusic.stop();
+  } else {
+    gameMusic.loop()
+  }
 }
 
 function foodLocation() {
@@ -70,16 +81,16 @@ function foodLocation() {
 }
 
 function dPadController() { 
-  moveLeft.addEventListener('click', () => {
+  moveLeft.addEventListener('touchstart', () => {
     snake.setDir(-1,0, "left")
   })
-  moveRight.addEventListener('click', () => {
+  moveRight.addEventListener('touchstart', () => {
     snake.setDir(1, 0, "right");
   })
-  moveDown.addEventListener('click', () => {
+  moveDown.addEventListener('touchstart', () => {
     snake.setDir(0, 1, "down");
   })
-  moveUp.addEventListener('click', () => {
+  moveUp.addEventListener('touchstart', () => {
     snake.setDir(0, -1, "up");
   })
 }
@@ -101,14 +112,14 @@ function keyPressed() {
   // }
 }
 function draw() {
+  getAudioContext().resume()
+
   scale(rez);
-  background('fff');
-  
+  background('fff');  
   if (snake.eat(food)) {
-    foodLocation();
-    eatSound.stop();
-    eatSound.play();
     let score = document.querySelector('.score').innerHTML
+    foodLocation();
+    eatSound.play();
 
     if (score % 5 === 0) {
       eatSound.stop();
@@ -153,7 +164,6 @@ function draw() {
     } else {
       // No user is signed in.
     }
-    eatSound.stop();
     gameMusic.stop();
     deathSound.play();
   }
